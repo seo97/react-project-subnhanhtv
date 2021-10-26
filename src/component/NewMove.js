@@ -1,0 +1,67 @@
+import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
+import MoveHots from '../component/MoveHots.js'
+import { OddHot } from '../data/OddHot.js'
+
+export default function NewMove() {
+    const [error, setError] = useState(null);
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        fetch("https://6172a88e61ed900017c409ba.mockapi.io/api/moveSeries")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setItems(result);
+                },
+                (error) => {
+                    setError(error);
+                }
+            )
+    }, []);
+
+    if (error) {
+        return console.log(error);
+    } else {
+        return (
+            <div className="main__sections">
+                <div className="main__header">
+                    <h2 className="main__header-title">Phim bộ mới</h2>
+                    <div className="main__options">
+                        <span className="main__options-select active">Tất cả phim</span>
+                        <span className="main__options-select">Sắp chiếu</span>
+                    </div>
+                </div>
+                <div className="main__cartegory">
+                    <div className="main__moveList">
+                        {items.map(item => (
+                            <div className="main__item" key={item.id}>
+                                <div className="main__item-img">
+                                    <img src={item.image} alt="" />
+                                </div>
+                                <div className="main__item-desc">
+                                    <h3 className="main__item-title">{item.name}</h3>
+                                    <p className="main__item-type">
+                                        <FontAwesomeIcon icon={faTag} />
+                                        <span>{item.type}</span>
+                                    </p>
+                                </div>
+                                <div className="main__item-label">
+                                    <span>{item.parts}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="main__hotList">
+                        <MoveHots
+                            url={OddHot}
+                            name='Phim lẻ hot'
+                        />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+}

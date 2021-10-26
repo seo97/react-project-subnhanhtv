@@ -1,0 +1,115 @@
+.header {
+    position: relative;
+    padding: 10px 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: #0c2738;
+    &__logo {
+        width: 200px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        & img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__navbar {
+        flex: 1;
+        position: relative;
+        margin-left: 300px;
+        &-close {
+            position: absolute;
+            top: 0;
+            left: -50px;
+            width: 50px;
+            height: 50px;
+            background: #081b27;
+            font-size: 1.7rem;
+            color: $textColor;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+    }
+    &__list {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__link {
+        width: 100%;
+        height: 100%;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: $navbarColor;
+        text-shadow: 0px 0px 1px $navbarColor;
+        &:hover {
+            color: $textColor;
+        }
+    }
+    &__menu {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        display: none;
+        & label {
+            width: 100%;
+            height: 100%;
+            color: $textColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+        & input {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        padding: 20px 10px;
+    }
+    @media screen and (max-width: 768px) {
+        padding: 20px 10px;
+        &__navbar {
+            top: 0;
+            right: -100%;
+            position: fixed;
+            display: flex;
+            align-items: flex-start;
+            width: 45%;
+            height: 100%;
+            background-color: rgba($color: #081b27, $alpha: 1);
+            padding: 20px 30px;
+            margin-left: 0;
+            z-index: 999;
+            &-close {
+                display: flex;
+            }
+        }
+        &__list {
+            width: 100%;
+            height: 100%;
+            padding: 50px 0;
+            display: inline-block;
+        }
+        &__item {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        &__menu {
+            display: block;
+            &.active > &__navbar {
+                right: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+$navbarColor: #899ead;
+$textColor: #fff;
+$headingColor: #f1b722;
+$labelColor: #a21d0a;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul,
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+@import "header";
+@import "main";
